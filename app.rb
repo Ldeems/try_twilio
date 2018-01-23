@@ -1,8 +1,17 @@
 require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
+load './local_ENV.rb' if File.exist?('./local_ENV.rb')
 get "/" do 
-    "Ahoy"
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    
+    @message = @client.messages.create(
+      from: twilio_number,
+      to: to_number,
+      body: 'they are behind you'
+    )
+    
+    puts @message.status
 end
 
 # Respond to incoming calls with a simple text message
@@ -16,3 +25,6 @@ post '/sms' do
   
     twiml.to_s
   end
+
+  
+# set up a client to talk to the Twilio REST API
