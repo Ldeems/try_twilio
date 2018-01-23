@@ -3,11 +3,11 @@ require 'twilio-ruby'
 require 'sinatra'
 load './local_ENV.rb' if File.exist?('./local_ENV.rb')
 get "/" do 
-    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    @client = Twilio::REST::Client.new(ENV['account_sid'], ENV['auth_token'])
     
     @message = @client.messages.create(
-      from: twilio_number,
-      to: to_number,
+      from: ENV['twilio_number'],
+      to: ENV['to_number'],
       body: 'they are behind you'
     )
     
