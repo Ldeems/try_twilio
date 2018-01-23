@@ -6,7 +6,7 @@ require 'sinatra'
 # end
 
 # Respond to incoming calls with a simple text message
-post '/sms' do
+get '/sms' do
     twiml = Twilio::TwiML::MessagingResponse.new do |r|
       r.message body: 'The Robots are coming! Head for the hills!'
     end
