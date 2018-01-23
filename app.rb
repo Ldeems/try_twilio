@@ -14,6 +14,7 @@ post "/send" do
       from: ENV['twilio_number'],
       to: ENV['to_number'],
       body: message
+      media_url: 'https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg'
     )
     
     puts @message.status
@@ -21,16 +22,7 @@ post "/send" do
 end
 
 # Respond to incoming calls with a simple text message
-# post '/sms' do
-#     "so i see somthing"
-#     twiml = Twilio::TwiML::MessagingResponse.new do |r|
-#       r.message body: 'The Robots are coming! Head for the hills!'
-#     end
-  
-#     content_type 'text/xml'
-  
-#     twiml.to_s
-#   end
+# 2
 
   
 # set up a client to talk to the Twilio REST API
