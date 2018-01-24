@@ -19,9 +19,3 @@ post "/send" do
     puts @message.status
     redirect '/'
 end
-
-# Respond to incoming calls with a simple text message
-# 2
-
-  
-# set up a client to talk to the Twilio REST API
