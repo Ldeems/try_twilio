@@ -3,7 +3,11 @@ require 'twilio-ruby'
 require 'sinatra'
 load './local_ENV.rb' if File.exist?('./local_ENV.rb')
 get '/' do
-    
+    twiml = Twilio::TwiML::MessagingResponse.new do |r|
+        r.message body: 'this is pretty awesome'
+      end
+      content_type 'text/xml'
+      twiml.to_s
     erb :page_one
 end    
 
