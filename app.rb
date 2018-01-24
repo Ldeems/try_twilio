@@ -27,8 +27,8 @@ end
 # Respond to incoming calls with a simple text message
 post '/sms' do
     twiml = Twilio::TwiML::MessagingResponse.new do |r|
-        it = params[:body]
-      r.message body: "#{it}"
+        
+      r.message body: "I know what you want"
     end
     content_type 'text/xml'
     twiml.to_s
