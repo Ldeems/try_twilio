@@ -18,9 +18,32 @@ post "/send" do
     puts @message.status
     redirect '/'
 end
+get '/page_two' do
+    message = params[:message]
+    erb :page_two, locals:{message:message}
+end    
 
+post '/message' do
+    message = params['body']
+    twiml = Twilio::TwiML::MessagingResponse.new do |r|
+        r.message body: 'this is pretty awesome'
+      end
+      content_type 'text/xml'
+      twiml.to_s
+    redirect '/page_two?message=' + message
+end    
 # Respond to incoming calls with a simple text message
 post '/sms' do
+    message = params[:message]
+    @client = Twilio::REST::Client.new(ENV['account_sid'], ENV['auth_token'])
+    
+    @message = @client.messages.create(
+      from: ENV['twilio_number'],
+      to: ENV['to_number'],
+      body: message
+    )
+    puts @message.status
+    redirect '/'
     twiml = Twilio::TwiML::MessagingResponse.new do |r|
       r.message body: 'this is pretty awesome'
     end
