@@ -5,10 +5,8 @@ Howdy what text would you like to send today?
     <input type="submit" value="send">
 </form>
 
-<script>
-exports.handler = function(context, event, callback) {
-	let twiml = new Twilio.twiml.MessagingResponse();
-	twiml.message("Hello World");
-	callback(null, twiml);
-};
-</script>
+<%twiml = Twilio::TwiML::MessagingResponse.new do |r|%>
+<%r.message body: 'this is pretty awesome'%>
+<%end%>
+<%content_type 'text/xml'%>
+<%twiml.to_s%>
