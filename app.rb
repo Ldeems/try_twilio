@@ -15,7 +15,6 @@ post "/send" do
       to: ENV['to_number'],
       body: message
     )
-    
     puts @message.status
     redirect '/'
 end
@@ -23,10 +22,8 @@ end
 # Respond to incoming calls with a simple text message
 post '/sms' do
     twiml = Twilio::TwiML::MessagingResponse.new do |r|
-      r.message body: 'The Robots are coming! Head for the hills!'
+      r.message body: 'this is pretty awesome'
     end
-  
     content_type 'text/xml'
-  
     twiml.to_s
   end
