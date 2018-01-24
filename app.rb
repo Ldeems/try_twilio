@@ -3,7 +3,7 @@ require 'twilio-ruby'
 require 'sinatra'
 load './local_ENV.rb' if File.exist?('./local_ENV.rb')
 get '/' do
-    #recieved = params[:message]
+    
     erb :page_one
 end    
 
